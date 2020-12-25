@@ -23,7 +23,7 @@ public class RecipeServiceImpl implements RecipeService {
         log.debug("I'm in the RecipeServiceImpl");
 
         Set<Recipe> recipeSet = new HashSet<>();
-        recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
+        recipeRepository.findAll().forEach(recipeSet::add);
         return recipeSet;
     }
 }

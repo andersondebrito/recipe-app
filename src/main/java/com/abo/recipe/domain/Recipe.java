@@ -6,7 +6,8 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Recipe {
 
@@ -24,27 +25,23 @@ public class Recipe {
     @Lob
     private String directions;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     @Lob
     private Byte[] image;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Notes notes;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredients = new HashSet<>();
-
     @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Notes notes;
+
     @ManyToMany
     @JoinTable(name = "recipe_category",
-        joinColumns = @JoinColumn(name = "recipe_id"),
+            joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
-
-    public Recipe() {
-    }
 
     public void setNotes(Notes notes) {
         if (notes != null) {
@@ -58,5 +55,4 @@ public class Recipe {
         this.ingredients.add(ingredient);
         return this;
     }
-
 }

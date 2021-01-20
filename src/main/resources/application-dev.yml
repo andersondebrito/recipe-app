@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: ${DEV_DATASOURCE_URL}
+    username: ${dev_user}
+    password: ${dev_pass}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+    show-sql: true
+#   properties:
+#     javax:
+#       persistence:
+#         schema-generation:
+#           create-source: metadata
+#           scripts:
+#            action: create
+#             create-target: database-create-script.sql

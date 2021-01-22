@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: ${PROD_DATASOURCE_URL}
+    username: ${prod_user}
+    password: ${prod_pass}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+    show-sql: true
+#   properties:
+#     javax:
+#       persistence:
+#         schema-generation:
+#           create-source: metadata
+#           scripts:
+#            action: create
+#             create-target: database-create-script.sql
